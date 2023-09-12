@@ -1,37 +1,23 @@
-﻿// int first = 5;
+﻿string message = "(What if) I am (only interested) in the last (set of parentheses)?";
+int openingPosition = message.LastIndexOf('(');
 
+openingPosition += 1;
+int closingPosition = message.LastIndexOf(')');
+int length = closingPosition - openingPosition;
+Console.WriteLine(message.Substring(openingPosition, length));
 
-// int second = 7;
-// string message = first.ToString() + second.ToString();
-// Console.WriteLine(message);
-
-// string value = "102";
-// int result = 0;
-// if (int.TryParse(value, out result))
-// {
-//     Console.WriteLine($"Measurement: {result}");
-// }
-// else
-// {
-//     Console.WriteLine("Unable to report the measurement.");
-// }
-string[] values = { "12.3", "45", "ABC", "11", "DEF" };
-
-string message = "";
-decimal total = 0;
-decimal x = 0;
-
-foreach (string str in values)
+string message = "(What if) there are (more than) one (set of parentheses)?";
+while (true)
 {
-    if (decimal.TryParse(str, out x))
-    {
-        total += x;
-    }
+    int openingPosition = message.IndexOf('(');
+    if (openingPosition == -1) break;
 
-    else 
-    {
-        message += str;
-    }
+    openingPosition += 1;
+    int closingPosition = message.IndexOf(')');
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+
+    // Note the overload of the Substring to return only the remaining 
+    // unprocessed message:
+    message = message.Substring(closingPosition + 1);
 }
-
-Console.WriteLine($"Total: {total}\nMessage: {message}");
